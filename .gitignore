@@ -1,6 +1,10 @@
 # data and build folders
 data/*
 !data/.keep
+model/*
+!model/.keep
+result/*
+!result/.keep
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
