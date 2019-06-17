@@ -18,6 +18,6 @@ with tf.device("/gpu:0"):
 	              metrics=['accuracy'])
 
 	start_time = time.time()
-	model.fit(x_train, y_train, epochs=100, batch_size=1024)
+	model.fit(x_train, y_train, epochs=500, batch_size=8096)
 	model.evaluate(x_test, y_test)
 	print(time.time()-start_time)
