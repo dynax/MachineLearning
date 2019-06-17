@@ -39,10 +39,10 @@ class NetDense(nn.Module):
 transform = transforms.Compose(
     [transforms.ToTensor(),
      transforms.Normalize((0.1307, ), (0.3081, ))])
-trainset = torchvision.datasets.MNIST(root=path_data_folder, train=True, download=True, transform=transform)
-trainloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, shuffle=True, num_workers=num_workers)
-testset = torchvision.datasets.MNIST(root=path_data_folder, train=False, download=True, transform=transform)
-testloader = torch.utils.data.DataLoader(testset, batch_size=batch_size, shuffle=False, num_workers=num_workers)
+trainset = torchvision.datasets.MNIST(root=path_data_folder, train=True, download=True, transform=transform).to(device)
+trainloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, shuffle=True, num_workers=num_workers).to(device)
+testset = torchvision.datasets.MNIST(root=path_data_folder, train=False, download=True, transform=transform).to(device)
+testloader = torch.utils.data.DataLoader(testset, batch_size=batch_size, shuffle=False, num_workers=num_workers).to(device)
 classes = ('0', '1', '2', '3','4', '5', '6', '7', '8', '9')
 
 # # get some random training images
@@ -64,7 +64,7 @@ for epoch in range(5):  # loop over the dataset multiple times
     running_loss = 0.0
     for i, data in enumerate(trainloader, 0):
         # get the inputs; data is a list of [inputs, labels]
-        inputs, labels = data[0].to(device), data[1].to(device)
+        inputs, labels = data
         # zero the parameter gradients
         optimizer.zero_grad()
         # forward + backward + optimize
@@ -84,7 +84,7 @@ correct = 0.
 total = 0.
 with torch.no_grad():
     for data in testloader:
-        images, labels = data[0].to(device), data[1].to(device)
+        images, labels = data
         outputs = net(images)
         _, predicted = torch.max(outputs.data, 1)
         total += labels.size(0)
