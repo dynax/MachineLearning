@@ -19,4 +19,4 @@ model.compile(optimizer='adam',
 start_time = time.time()
 model.fit(x_train, y_train, epochs=50)
 model.evaluate(x_test, y_test)
-print(time.time-start_time)
+print(time.time()-start_time)

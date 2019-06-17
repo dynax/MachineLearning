@@ -78,8 +78,8 @@ for epoch in range(5):  # loop over the dataset multiple times
             running_loss = 0.0
 print('Finished Training')
 ## Evaluation
-correct = 0
-total = 0
+correct = 0.
+total = 0.
 with torch.no_grad():
     for data in testloader:
         images, labels = data
