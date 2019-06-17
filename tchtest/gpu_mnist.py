@@ -11,7 +11,7 @@ import time
 path_data_folder = "../data/mnist_pytorch"
 num_workers = 2
 batch_size = 128
-device = torch.device("cpu:0")
+device = torch.device("cuda:0")
 
 # functions to show an image
 def imshow(img):
