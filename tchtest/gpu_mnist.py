@@ -39,9 +39,9 @@ class NetDense(nn.Module):
 transform = transforms.Compose(
     [transforms.ToTensor(),
      transforms.Normalize((0.1307, ), (0.3081, ))])
-trainset = torchvision.datasets.MNIST(root=path_data_folder, train=True, download=True, transform=transform).to(device)
+trainset = torchvision.datasets.MNIST(root=path_data_folder, train=True, download=True, transform=transform)
 trainloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, shuffle=True, num_workers=num_workers).to(device)
-testset = torchvision.datasets.MNIST(root=path_data_folder, train=False, download=True, transform=transform).to(device)
+testset = torchvision.datasets.MNIST(root=path_data_folder, train=False, download=True, transform=transform)
 testloader = torch.utils.data.DataLoader(testset, batch_size=batch_size, shuffle=False, num_workers=num_workers).to(device)
 classes = ('0', '1', '2', '3','4', '5', '6', '7', '8', '9')
 
