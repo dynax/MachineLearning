@@ -2,7 +2,7 @@
 import tensorflow as tf
 mnist = tf.keras.datasets.mnist
 import time
-from tf.keras import backend as K
+from tensorflow.keras import backend as K
 
 num_cores = 4
 
