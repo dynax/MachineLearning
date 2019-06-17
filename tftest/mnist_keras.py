@@ -1,6 +1,9 @@
 import tensorflow as tf
 mnist = tf.keras.datasets.mnist
 import time
+import os
+os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"   # see issue #152
+os.environ["CUDA_VISIBLE_DEVICES"] = ""
 
 with tf.device("/cpu:0"):
 	(x_train, y_train),(x_test, y_test) = mnist.load_data()
