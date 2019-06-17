@@ -1,5 +1,6 @@
 import tensorflow as tf
 mnist = tf.keras.datasets.mnist
+import time
 
 (x_train, y_train),(x_test, y_test) = mnist.load_data()
 x_train, x_test = x_train / 255.0, x_test / 255.0
@@ -15,18 +16,7 @@ model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 
+start_time = time.time()
 model.fit(x_train, y_train, epochs=50)
 model.evaluate(x_test, y_test)
-
-
-from sklearn import linear_model
-import time
-print("lr model")
-x_train_flat = x_train.reshape([-1, 28*28])
-x_test_flat = x_test.reshape([-1, 28*28])
-lr_model = linear_model.LogisticRegression()
-time_start = time.time()
-lr_model.fit(x_train_flat, y_train)
-time_end = time.time()
-print("Elapsed time: %.2f" % (time_end - time_start))
-lr_model.score(x_test_flat, y_test)
+print(time.time-start_time)
