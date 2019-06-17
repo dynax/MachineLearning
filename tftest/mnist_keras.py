@@ -1,10 +1,22 @@
-import os
-os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"   # see issue #152
-os.environ["CUDA_VISIBLE_DEVICES"] = ""
 
 import tensorflow as tf
 mnist = tf.keras.datasets.mnist
 import time
+from tf.keras import backend as K
+
+num_cores = 4
+
+num_CPU = 1
+num_GPU = 0
+
+config = tf.ConfigProto(intra_op_parallelism_threads=num_cores,
+                        inter_op_parallelism_threads=num_cores, 
+                        allow_soft_placement=True,
+                        device_count = {'CPU' : num_CPU,
+                                        'GPU' : num_GPU}
+                       )
+session = tf.Session(config=config)
+K.set_session(session)
 
 with tf.device("/cpu:0"):
 	(x_train, y_train),(x_test, y_test) = mnist.load_data()
