@@ -17,6 +17,6 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 
 start_time = time.time()
-model.fit(x_train, y_train, epochs=50)
+model.fit(x_train, y_train, epochs=5)
 model.evaluate(x_test, y_test)
 print(time.time()-start_time)
